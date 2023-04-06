@@ -5,6 +5,7 @@ RDEPENDS:${PN}:append = "bash"
 SRC_URI:append = " \
     file://rauc-disable-cert.sh \
     file://rauc-enable-cert.sh \
+    file://rauc-devel.cert.pem \
     "
 
 do_install:append() {
@@ -16,6 +17,10 @@ do_install:append() {
 
     install -d ${D}${sysconfdir}/rauc/certificates-available
     install -d ${D}${sysconfdir}/rauc/certificates-enabled
+
+    # Always deploy the devel certificate but don't enable it yet
+    install -D -m 0644 ${WORKDIR}/rauc-devel.cert.pem \
+        ${D}${sysconfdir}/rauc/certificates-available/rauc-devel.cert.pem
 
     KEYRING_FILE_NAME=$(basename "${RAUC_KEYRING_FILE}")
 
