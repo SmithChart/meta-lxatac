@@ -13,6 +13,7 @@ Environment="AIOHTTP_NO_EXTENSIONS=1"
 Restart=on-failure
 RestartSec=30
 
+# @relation(CYSEC-8, scope=range_start)
 # Hardening Options
 PrivateDevices=true
 PrivateTmp=true
@@ -22,6 +23,7 @@ ProtectKernelTunables=true
 ProtectKernelLogs=true
 ProtectSystem=strict
 ReadWritePaths=/var/cache/lxa-iobus/
+# @relation(CYSEC-8, scope=range_end)
 
 [Install]
 WantedBy=multi-user.target
